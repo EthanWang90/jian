@@ -1,5 +1,6 @@
 import React from 'react';
 import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper} from './style';
+import {CSSTransition} from 'react-transition-group';
 
 class Header extends React.Component{
 
@@ -22,11 +23,17 @@ class Header extends React.Component{
                         <i className="iconfont">&#xe636;</i>    
                     </NavItem>
                     <SearchWrapper>
-                        <NavSearch
-                            className={this.state.isFocus? 'isFocus': ''}
-                            onFocus={this.onFocusHandler}
-                            onBlur={this.onBlurHandler}
-                        ></NavSearch>
+                        <CSSTransition
+                            in={this.state.isFocus}
+                            timeout={200}
+                            classNames="slide"
+                        >
+                            <NavSearch
+                                className={this.state.isFocus? 'isFocus': ''}
+                                onFocus={this.onFocusHandler}
+                                onBlur={this.onBlurHandler}
+                            ></NavSearch>
+                        </CSSTransition>
                         <i className={this.state.isFocus? 'iconfont isFocus': 'iconfont'}>&#xe60e;</i>
                     </SearchWrapper>                  
                 </ Nav>
