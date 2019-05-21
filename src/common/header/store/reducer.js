@@ -17,10 +17,9 @@ export default (state=defaultState, action)=>{
         }
     }
     if(action.type === "update_list"){
-        return {
-            isFocus: state.isFocus,
+        return Object.assign({},state,{
             searchList: action.data
-        }
+        })
     }
     return state
 }

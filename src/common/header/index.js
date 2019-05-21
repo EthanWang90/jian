@@ -37,7 +37,7 @@ class Header extends React.Component{
                         >
                             <NavSearch
                                 className={this.props.isFocus? 'isFocus': ''}
-                                onFocus={this.props.onFocusHandler}
+                                onFocus={()=>{this.props.onFocusHandler(this.props.list)}}
                                 onBlur={this.props.onBlurHandler}
                             ></NavSearch>
                         </CSSTransition>
@@ -88,8 +88,10 @@ const mapStateToProps=(state)=>{
 
 const mapDispatchToProps=(dispatch)=>{
     return {
-        onFocusHandler(){
-            dispatch(actionCreators.showHotSearch(dispatch));
+        onFocusHandler(list){
+            if (list.length === 0){
+                dispatch(actionCreators.showHotSearch(dispatch));
+            }
             dispatch(actionCreators.searchFocus());
         },
         onBlurHandler(){
